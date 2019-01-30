@@ -1,0 +1,43 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background-color: dimgray;
+    color: rgba(255, 255, 255, 0.781);
+}
+
+.tranparent {
+    outline: none;
+    background-color: transparent !important;
+    color: rgba(255, 255, 255, 0.781);
+    border: 1px solid gray;
+}
+
+.tranparent:focus {
+  color:white;
+}
+.tranparent::placeholder {
+    color: #343a40;
+    font-weight: bold;
+}
+#registerBtn, #loginBtn, #profilePic {
+    display: none;
+}
+
+.selectPic {
+    border-bottom: #8d2663 solid 1px;
+}
+.selectPic:hover {
+    color: #393a3c70;
+    border-bottom: #343a40 solid 1px;
+    cursor: pointer;
+}
+i {
+    color: #8d2663;
+}
+
+.greyText {
+    color : #ababab;
+}

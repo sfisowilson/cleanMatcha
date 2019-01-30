@@ -1,0 +1,32 @@
+<% include templates/head %>
+  <body class='container-fluid d-flex flex-column'>
+      
+    <div class="wrapper container p-2 flex-fill d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="intro col-12 text-center p-4 my-4">
+            <h1>Please complete your profile</h1>
+            <p class="greyText">Welcome and thank you for joining us! <i class="fa fa-heart"></i></p>
+          </div>
+          <div class="col-12">
+              <h2 class="text-center">Upload profile pic</h2>
+              <form id='profilePic'>
+                  <input type="file" name="profile" id="profile">
+                  <input type="submit" class="btn btn-dark uploadBtn" value="Upload">
+              </form>
+              <div class="col-12 py-4">
+                  <div class="row">
+                    <div class="col-6 text-center selectPic p-2">Choose picture...</div>
+                    <div class="col-6 btn btn-dark upload">Upload</div>
+
+                  </div>
+              </div>
+          </div>
+         
+        </div>
+
+      </div>
+      </div>
+      
+    </div>
+    <% include templates/footer %>

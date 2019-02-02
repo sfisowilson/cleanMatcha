@@ -3,6 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const dotenv = require('dotenv').config();
+const mongoose = require('mongoose');
+
+mongoose.set('useCreateIndex', true);
+mongoose.connect("mongodb+srv://admin:"+ process.env.DB_PASSWORD +"@matcha-vpb7s.mongodb.net/matcha?retryWrites=true" ,  { useNewUrlParser: true })
+.catch(err => console.log(err));
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');

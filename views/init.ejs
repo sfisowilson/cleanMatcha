@@ -1,8 +1,10 @@
 <% include templates/head %>
   <body class='container-fluid d-flex flex-column'>
-      
+    
+
     <div class="wrapper container p-2 flex-fill d-flex align-items-center">
-      <div class="container">
+    <!-- upload profile picture -->
+      <div class="container uploadBody">
         <div class="row">
           <div class="intro col-12 text-center p-4 my-4">
             <h1>Please complete your profile</h1>
@@ -22,11 +24,37 @@
                   </div>
               </div>
           </div>
+          <div class="col-12 pb-4">
+            <div class="col-sm-6 m-auto">
+            <div class="m-auto w-300 imagePreview picture"></div>
+            </div>
+          </div>
+          <div class="col-6 m-auto btn btn-dark my-4 nextButton" data-from="uploadBody">Next</div>
+          <div class="col-12 text-center py-4">
+            <h4>1 OF 3</h4>
+          </div>
          
         </div>
 
       </div>
+    <!-- more about yourself -->
+      <div class="container aboutBody">
+        <div class="row">
+          <div class="intro col-12 text-center p-4 my-4">
+            <h1>Please complete your profile</h1>
+            <p class="greyText">Welcome and thank you for joining us! <i class="fa fa-heart"></i></p>
+          </div>
+           <div class="col-12">
+              <h2 class="text-center">Tell us about yourself!</h2>
+              <form id="aboutForm">
+              </form>
+          </div>
+          <div class="col-12 text-center py-4">
+            <h4>2 OF 3</h4>
+          </div>
+        </div>
       </div>
+
       
     </div>
-    <% include templates/footer %>
+  <% include templates/footer %>

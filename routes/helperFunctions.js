@@ -5,9 +5,6 @@ helper = {
         console.log('test worked!');
     },
     send_mail : function (email, msg){
-        console.log('email');
-        console.log(email);
-        console.log(msg);
         let transporter = nodeMailer.createTransport({
             host: 'smtp.gmail.com',
             port: 465,
@@ -31,6 +28,12 @@ helper = {
             }
                 res.render('index');
         });
+    },
+     md5hash : function(data)
+    {
+        var crypto = require('crypto');
+        var hash = crypto.createHash('md5').update(data).digest("hex");
+        return hash;
     }
 }
 

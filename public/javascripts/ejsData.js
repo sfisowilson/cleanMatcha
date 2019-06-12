@@ -6,6 +6,7 @@ $(document).ready(function(){
     });
 
     $('.login').click(function(){
-        $('#loginBtn').click();
+        let btn = $(this).attr('data-for');
+        $('#'+btn).click();
     });
 });

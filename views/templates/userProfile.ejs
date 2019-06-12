@@ -1,0 +1,95 @@
+<div class="suggestions col-12">
+    <div class="row">
+            <div class="col-md-4 profileBoard">
+                <div class="row px-4">
+                    <div class="col-12 text-center my-4">
+                        <h3>Gallery</h3>
+                    </div>
+                    <div class="col-6 picThumb" style="background:url(<%=userDetailes.pic%>)"></div>
+                    <div class="col-6 picThumb" style="background:url(<%=userDetailes.pic%>)"></div>
+                    <div class="col-6 picThumb" style="background:url(<%=userDetailes.pic%>)"></div>
+                    <div class="col-6 picThumb" style="background:url(<%=userDetailes.pic%>)"></div>
+                    <div class="col-12 text-center my-4">
+                        <h3>Upload picture</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 profileBoard">
+                <% if (locals.userDetailes){ %>
+                
+                    <div class="col-12 my-4 text-center"><h3>User Details</h3></div>
+                    <div class="col-12 picture" style="background:url(<%=userDetailes.pic%>)"></div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-6 text-left"><strong>First Name:</strong></div>
+                        <div class="col-6 text-right"><strong><%= userDetailes.firstName %></strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>Last Name:</strong></div>
+                        <div class="col-6 text-right"><strong> <%= userDetailes.lastName %></strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>Username:</strong></div>
+                        <div class="col-6 text-right"><strong><%= userDetailes.username %></strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>Gender:</strong></div>
+                        <div class="col-6 text-right"><strong> <%= userDetailes.gender %></strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>age:</strong></div>
+                        <div class="col-6 text-right"><strong> <%= userDetailes.birthDate %></strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>Interests:</strong></div>
+                        <div class="col-6 text-right"><strong><%= userDetailes.interests %></strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>Sexuality:</strong></div>
+                        <div class="col-6 text-right"><strong><%= userDetailes.sexuality %></strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center"><h4>Bio:</h4></div>
+                        <div class="col-12 text-center"><strong><%= userDetailes.bio %></strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                <% } %>
+            </div>
+            <div class="col-md-4 profileBoard">
+                    
+                    <div class="col-12 my-4 text-center"><h3>User Stats</h3></div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>rating:</strong></div>
+                        <div class="col-6 text-right"><strong>7/10</strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>Connections:</strong></div>
+                        <div class="col-6 text-right"><strong>70</strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>likes:</strong></div>
+                        <div class="col-6 text-right"><strong>10</strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>views:</strong></div>
+                        <div class="col-6 text-right"><strong>190</strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>Last seen:</strong></div>
+                        <div class="col-6 text-right"><strong>12/08/1987</strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+            </div>
+    </div>
+</div>

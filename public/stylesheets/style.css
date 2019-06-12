@@ -42,6 +42,10 @@ i {
     color : #ababab;
 }
 
+.gallery {
+    width: 100%;
+}
+
 .picture {
     width: 100%;
     padding-bottom: 100%;
@@ -49,14 +53,58 @@ i {
 
     position: relative;
     box-shadow: 0px 6px 18px 1px rgba(150,150,150,0.4);
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: cover !important;
     border-radius: 50%;
 
     background-color: black;
 }
 
+.picThumb {
+    width: 98%;
+    padding-bottom: 49%;
+    margin: auto;
+
+    position: relative;
+    box-shadow: 0px 6px 18px 1px rgba(150,150,150,0.4);
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: cover !important;
+    border: #ababab thick solid;
+    background-color: black;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #252525; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  margin: auto !important;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .imagePreview, .nextButton, .aboutBody, .registerStatusButton, .hidden {
     display: none;
+}
+
+.profileBoard {
+    border: #696969 solid thin;
+    background-color: #343a40;
+    border-radius: 5px;
+    padding: 1em;
+}
+
+.underline{
+    border-top: #8d2663 groove thin;
+}
+
+.profileImage, .deleteImage{
+    cursor: pointer;
 }

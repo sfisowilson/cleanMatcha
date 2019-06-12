@@ -1,0 +1,155 @@
+<div class="suggestions col-12">
+    <div class="row">
+            <div class="col-md-4 profileBoard">
+                <div class="row px-4">
+                    <div class="col-12 text-center my-4">
+                        <h3>Gallery</h3>
+                    </div>
+                    <div class="gallery">
+                        <div class="row">
+                            <% for(var i=0; i < pics.length; i++) { %>
+                                <div class="col-6 picThumb" style="background:url(<%=pics[i].imageName%>)">
+                                    <div class="row picOptions">
+                                        <% if (userDetailes.pic === pics[i].imageName) { %>
+                                            <div class="col-12 text-center bg-light text-dark refreshGallery">Profile</div>
+                                        <% } else { %>
+                                            <div class="col-6 text-center bg-light profileImage"><i class="fa fa-user-circle"></i></div>
+                                            <div class="col-6 text-center bg-light deleteImage"><i class="fa fa-trash-alt"></i></div>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center my-4">
+                        <h3>Upload picture</h3>
+                    </div>
+                    <div class="col-12">
+                        <h2 class="text-center">Upload profile pic</h2>
+                        <form id='profilePic' enctype="multipart/form-data">
+                            <input type="test" name="title" value="helloTitle">
+                            <input type="file" name="picUpload" id="profile" required>
+                            <input type="submit" class="btn btn-dark uploadBtn" value="Upload picture">
+                        </form>
+                        <div class="col-12 py-4">
+                            <div class="row">
+                                <div class="col-6 text-center selectPic p-2">Choose picture...</div>
+                                <div class="col-6 btn btn-dark upload" data-add='true'>Upload</div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 profileBoard">
+                <% if (locals.userDetailes){ %>
+                
+                    <div class="col-12 my-4 text-center"><h3>User Details</h3></div>
+                    <div class="col-12 picture" style="background:url(<%=userDetailes.pic%>)"></div>
+                    
+                    <div class="row mt-4">
+                        <div class="col-6 text-left"><strong>First Name:</strong></div>
+                        <div class="col-6 text-right"><strong><%= userDetailes.firstName %></strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>Last Name:</strong></div>
+                        <div class="col-6 text-right"><strong> <%= userDetailes.lastName %></strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>Username:</strong></div>
+                        <div class="col-6 text-right"><strong><%= userDetailes.username %></strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>Gender:</strong></div>
+                        <div class="col-6 text-right"><strong> <%= userDetailes.gender %></strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>age:</strong></div>
+                        <div class="col-6 text-right"><strong> <%= userDetailes.birthDate %></strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>Interests:</strong></div>
+                        <div class="col-6 text-right"><strong><%= userDetailes.interests %></strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>Sexuality:</strong></div>
+                        <div class="col-6 text-right"><strong><%= userDetailes.sexuality %></strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>Bio:</strong></div>
+                        <div class="col-6 text-right"><strong><%= userDetailes.bio %></strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>rating:</strong></div>
+                        <div class="col-6 text-right"><strong>7/10</strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>Connections:</strong></div>
+                        <div class="col-6 text-right"><strong>70</strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>likes:</strong></div>
+                        <div class="col-6 text-right"><strong>10</strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>views:</strong></div>
+                        <div class="col-6 text-right"><strong>190</strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-left"><strong>Last seen:</strong></div>
+                        <div class="col-6 text-right"><strong>12/08/1987</strong></div>
+                        <div class="underline col-12 pt-1 pb-2"></div>
+                    </div>
+                <% } %>
+            </div>
+            <div class="col-md-4 profileBoard">
+                <div class="row p-4">
+                    <form method="POST">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control tranparent validString" maxlength="30" placeholder="firstName *" name="firstName" aria-describedby="firstName" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control tranparent validString" maxlength="30" placeholder="lastName *" name="lastName" aria-describedby="lastName" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control tranparent validString" maxlength="30" placeholder="username *" name="username" aria-describedby="username" required>
+                        </div>
+                        <div class="input-group mb-3 border-dark">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                            </div>
+                            <input type="email" class="form-control tranparent validEmail-register" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" maxlength="50" placeholder="email *" name="email" aria-describedby="email" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-key"></i></span>
+                            </div>
+                            <input type="password" class="form-control tranparent validPassword-register" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" maxlength="30" placeholder="password *" name="password" aria-describedby="password" required>
+                        </div>
+                        <input type='submit' id="registerBtn" value='Register' class="btn btn-dark">
+                    </form>
+                </div>
+            </div>
+    </div>
+</div>

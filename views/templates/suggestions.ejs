@@ -1,0 +1,11 @@
+<div class="suggestions col-12">
+    <div class="row">
+        <% for(var i=0; i < count; i++) { %>
+        <div class="col-6 col-md-3 col-lg-2 p-2">
+            <div class="col-12 picture" style="background: url(<%= data[i].pic %>)"></div>
+            <div class="col-12 text-center"><a href="http://localhost:3000/userProfile?user=<%= data[i]._id %>"><%= data[i].firstName %> <%= data[i].lastName %></a></div>
+            <div class="col-12 text-center">age: 18</div>
+        </div>
+        <% } %>
+    </div>
+</div>

@@ -6,7 +6,7 @@ var path = require('path');
 const dotenv = require('dotenv').config();
 var multer  = require('multer')
 const jwt = require('jsonwebtoken');
-const faker = require('faker');
+const fs = require('fs');
 
 const User = require('../models/users');
 const Images = require('../models/images');
@@ -22,47 +22,6 @@ const storage = multer.diskStorage({
     cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
   }
 })
-
-router.get('/dontextistyet', function(req, res){
-    //generate data
-    let genders = [ 'female' , 'male' ];
-    let sexual_prefs = [ 'bisexual' , 'heterosexual', 'homosexual'];
-    var gender;
-
-    for(var i = 0; i < 30; i++)
-    {
-        gender = faker.random.arrayElement(genders);
-        sexuality = faker.random.arrayElement(sexual_prefs);
-        console.log("++++++++++++++++++++> " + sexuality);
-        new_user = {
-            firstName : faker.name.firstName(gender),
-            lastName : faker.name.lastName(),
-            email : faker.internet.email(),
-            username : faker.internet.userName(),
-            birthDate : '',
-            age : faker.random.number({'min': 16, 'max': 50}),
-            gender : gender,
-            bio : faker.lorem.sentence(),
-            password : 'Password1',
-            // security_key : key,
-            // loc_long : faker.address.longitude(),
-            // loc_lati : faker.address.latitude(),
-            pic : faker.internet.avatar(gender),
-            sexual_pref : sexuality,
-            completeProfile : 1,
-            verified : 1,
-            date : String( new Date())
-        };
-        // console.log(new_user);
-         User.create( new_user, function(err, doc) {
-            console.log(doc);
-              if (err){
-                console.log(err);
-              }
-         });
-    }
-    res.send("done");
-});
 
 // init uploa
 const upload = multer({
@@ -96,31 +55,58 @@ function checkFileType(file, cb){
 
 /* GET home page. */
 router.get('/', checkSession, function(req, res, next) {
-  res.render('init');
-});  
+  // pass all user info but the password              progress...
+  // pass all his pictures
+  // if allowed pass his location
+  // pass list of likes, views, connections
+  console.log('req.session.user');
+  console.log(req.session.user);
+  
+  User.findOne({"email": req.session.user})
+  .then(user => {
+     Images.find({"email": req.session.user})
+     .then(pics => {
+        console.log('profile');
+        // console.log(user);
+        res.render('profile', {
+          userDetailes : user,
+          pics: pics
+        });
 
-router.post('/saveAbout', verifyToken, function(req, res, next) {
-  console.log('about proccessing....');
-  jwt.verify(req.token, process.env.SESSION_SECRET, (err, authData) => {
-    console.log('verify------->');
-    if(err) {
-      res.json({dataCount : 1, data : {status : 403}});
-    } else {
-      let interests = '';
-      User.updateOne({"email": req.session.user}, {$set : {gender : req.body.gender,
-                                                           birthDate: req.body.birthDate,
-                                                           sexuality: req.body.sexuality,
-                                                           bio: req.body.bio,
-                                                           pic: req.body.pic,
-                                                           completeProfile: 1
-                                                          }})
-      .then( results => {
-        res.json({dataCount : 1, data : {status : 200}});
-      })
-      .catch(err => console.log(err));
-      // res.render('init');
-    }
-  });
+     })
+
+  })
+  .catch(err => {console.log(err);})
+}); 
+
+router.post('/refreshGallery', verifyToken, function(req, res, next) {
+  User.findOne({"email": req.session.user})
+  .then(user => {
+     Images.find({"email": req.session.user})
+     .then(pics => {
+        console.log('profile');
+        // console.log(user)
+        res.json({dataCount : 3, data : {status : 200, userDetailes : user, pics : pics}});
+
+     })
+
+  })
+  .catch(err => {console.log(err);})
+});
+
+router.post('/delete', verifyToken, function(req, res, next) {
+  User.findOne({"email": req.session.user})
+  .then(user => {
+     Images.find({"email": req.session.user})
+     .then(pics => {
+        console.log('profile');
+        // console.log(user)
+        res.json({dataCount : 3, data : {status : 200, userDetailes : user, pics : pics}});
+
+     })
+
+  })
+  .catch(err => {console.log(err);})
 });
 
 router.post('/storePic', verifyToken, function(req, res, next) {
@@ -137,15 +123,15 @@ router.post('/storePic', verifyToken, function(req, res, next) {
         } else {
           //save the name of the file to mongoose
           // store all images in a separete model
-          Images.countDocuments({"email": req.body.email}, (err, count) => {
-            console.log('count');
+          Images.countDocuments({"email": req.session.user}, (err, count) => {
+            console.log('count '+ req.session.user);
             console.log(count);
-            if (count < 3)
+            if (count < 4)
             {
               //save pic else delete the pic
               var imageModel = new Images({
                 email: req.session.user,
-                imageName: '/uploads/'+req.file.filename,
+                imageName: 'uploads/' + req.file.filename,
                 time: String(new Date())
               });
               imageModel.save(function (err) {
@@ -154,10 +140,11 @@ router.post('/storePic', verifyToken, function(req, res, next) {
             }
             else
               // delete the image
+              fs.unlinkSync(req.file.path);
               console.log('delete the image');
           })
           console.log('req.file');
-          res.json({dataCount : 2, data : {status : 200, pic : '/uploads/'+req.file.filename}});
+          res.json({dataCount : 1, data : {status : 200}});
         }
       })
     }

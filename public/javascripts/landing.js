@@ -15,6 +15,41 @@ $(document).ready(function(){
         console.log(user);
     });
 
+    $('#renewPasswordForm').submit(function (e) { 
+        e.preventDefault();
+        const user = makeObject($('#renewPasswordForm').serializeArray());
+        console.log(user.confirmPassword);
+        console.log(user);
+        if (user.password === user.confirmPassword)
+            reset(user);
+        else{
+            $('#renewPasswordForm')[0].reset();
+            $('.registerStatusButton').click();
+            $('.status').html('<h1>Provided passwords don\'t match</h1><p>Try again!</p>');
+        }
+    });
+
+    $('#renewPassword').submit(function (e) { 
+        e.preventDefault();
+        const user = makeObject($('#renewPassword').serializeArray());
+        renewPassword(user);
+        
+    });
+
+    $('.forgotPassButton').click(function (e) { 
+        e.preventDefault();
+        $('#loginForm').fadeOut();
+        $('.forgotPassButton').fadeOut();
+        $('#renewPassword').fadeIn();
+        $('.loginTitle').text('Renew Password');
+        $('.login').attr('data-for','renewBtn').text('Request new Password');
+    });
+
+    $(document).on('click', ".resend", function(){
+        console.log('please resend email to ' + $(this).attr('data-email'));
+        resendVerification($(this).attr('data-email'));
+    });
+
     $('.selectPic').click(function(e){
         e.preventDefault();
         $('#profile').click();
@@ -32,16 +67,34 @@ $(document).ready(function(){
     $('.upload').click(function (e) { 
         e.preventDefault();
         $('.uploadBtn').click();
-        // on successfull upload
-        $('.nextButton').fadeIn();
+        $('.upload').fadeOut();
     });
 
     $('#profilePic').submit(function (e) { 
         e.preventDefault();
-
+        var url;
+        if ($('.uploadBtn').val() === 'Upload picture')
+            url = 'http://localhost:3000/profile/storePic';
+        else
+            url = 'http://localhost:3000/init/storePic';
+        console.log($('#profilePic').serializeArray());
+        
+        // var formData = new FormData($('#profilePic')[0]);
+        var data = new FormData(this);
+        // jQuery.each(jQuery('#profilePic')[0].files, function(i, file) {
+        //     data.append('file-'+i, file);
+        // });
+        storePic(data, url);
         console.log($('#profilePic'));
         console.log('send');
     });
+
+    $('#logout').click(function (e) { 
+        e.preventDefault();
+        localStorage.removeItem('matchaToken');
+        logout();
+    });
+
     var from;
 
     $('.nextButton').click(function (e) { 
@@ -86,76 +139,3 @@ $(document).ready(function(){
     });
 });
 
-function checkFormat(email, regex, selector){
-    if (email.match(regex)){
-        if (selector)
-            $(selector).css('borderColor', 'green');
-        return true;
-    }
-    if (selector)
-        $(selector).css('borderColor', 'tomato');
-    return false;
-}
-
-function pathName(path){
-    var name = path.split('/');
-    if (name.length === 1)
-    {
-        name = path.split('\\');
-    }
-    return name[name.length - 1];
-}
-
-
-function makeObject(arr)
-{
-    /*
-    **  takes a form serialized array [{name: 'john', value: 'doe'}]
-    **  returns {john : doe}
-    */
-
-    var obj = {};
-    for (var i = 0; i < arr.length; i++)
-    {
-        obj[arr[i].name] = arr[i].value;
-    }
-    return obj;
-}
-
-
-function readURL(input) {
-        // console.log(input);
-        // console.log(input.files);
-  if (input.files && input.files[0]) {
-        // console.log('------>>');
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        // console.log('------');
-        // console.log(e.target.result);
-        var img = 'url(';
-        img += e.target.result;
-        img += ')';
-      console.log(img);
-      $('.imagePreview')
-      
-        .css('background-image', `${img}`);
-    };
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-
-// animation management function, from animation.io
-
-function animateCSS(element, animationName, callback) {
-    const node = document.querySelector(element)
-    node.classList.add('animated', animationName)
-
-    function handleAnimationEnd() {
-        node.classList.remove('animated', animationName)
-        node.removeEventListener('animationend', handleAnimationEnd)
-
-        if (typeof callback === 'function') callback()
-    }
-
-    node.addEventListener('animationend', handleAnimationEnd)
-}

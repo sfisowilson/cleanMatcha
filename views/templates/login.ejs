@@ -1,19 +1,29 @@
 <div class="col-12 col-sm-6 py-4 px-2">
-    <h3 class="text-center mb-4">Sign in</h3>
-    <form id="loginForm">
+    <h3 class="text-center mb-4 loginTitle">Sign in</h3>
+    <form id="loginForm" method="POST">
         <div class="input-group mb-3 border-dark">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fa fa-envelope"></i></span>
                 </div>
-                <input type="email" class="form-control tranparent validEmail-login" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="email" name="email" aria-describedby="email" required>
+                <input type="email" value="matcha@mailinator.com" class="form-control tranparent validEmail-login" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="email" name="email" aria-describedby="email" required>
               </div>
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fa fa-key"></i></span>
                 </div>
-                <input type="password" class="form-control tranparent validPassword-login" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="password" name="password" aria-describedby="password" required>
+                <input type="password" value="Password1" class="form-control tranparent validPassword-login" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="password" name="password" aria-describedby="password" required>
               </div>
               <input type="submit" value="Sign in" class="btn btn-dark" id="loginBtn">
+    </form>
+    <div class="forgotPassButton"><a href="#" class="text-white">Forgot Password?</a></div>
+    <form id="renewPassword" class="hidden" method="POST">
+       <div class="input-group mb-3 border-dark">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+          </div>
+          <input type="email" class="form-control tranparent validEmail-login " pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="email" name="email" required>
+        </div>
+        <input type="submit" value="Request new Password" class="btn btn-dark hidden" id = "renewBtn">
     </form>
 
 </div>
